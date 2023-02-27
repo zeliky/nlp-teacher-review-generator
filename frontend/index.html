@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css"
+          integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous"></script>
+
+    <script src ="/js/reviews.js"></script>
+    <title>מחולל חוות דעת לתלמיד</title>
+</head>
+<body>
+<div class="container mt-5">
+    <form id="review-form" action="/generate_review" method="POST">
+        <div class="row border rounded mt-2 p-3">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">שם התלמיד</span>
+                <input type="text" id="first_name" class="form-control"  aria-describedby="basic-addon3">
+            </div>
+        </div>
+
+
+        <div class="row border rounded mt-2 p-3 ">
+            <div class="form-group">
+                <h4>מה מאפיין את התלמיד כשהוא מבצע את מטלותיו?</h4>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col E mbti-col">
+                        <h5>שואף לארגן את העולם החיצוני והדברים סביבו</h5>
+                        <ul>
+                            <li>נוטה להתנסות ולפעול עם מעט חשיבה ותכנון מקדים</li>
+                            <li>נוטה להתייעץ ולדון בפרטים עם הסובבים</li>
+                            <li>מוחצן בעת מפגש עם אחרים</li>
+                            <li>נוטה להעמיק בנושאים בודדים</li>
+                        </ul>
+                    </div>
+                    <div class="col I mbti-col">
+                        <h5>מארגן את העולם הפנימי במושגים ורעיונות</h5>
+                        <ul>
+                            <li>נוטה לחשוב היטב לפני שפועל</li>
+                            <li>נוטה להרהר ולתהות עם עצמו</li>
+                            <li>מופנם במפגשים עם אחרים</li>
+                            <li>בעל תחומי עניין מגוונים</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="btn-group" data-toggle="buttons" aria-label="where you get your energy from">
+                            <label for="ei_range">התכונות מימין</label>
+                            <input type="range" id="ei_range" class="form_range" min="-2" max="2"
+                                   step="1">
+                            <label for="ei_range">התכונות משמאל</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row border rounded mt-2 p-3">
+            <div class="form-group">
+                <h4>מהם מקורות המידע המועדפים לפני ביצוע פעולה משימה או מטלה?</h4>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col S mbti-col">
+                        <h5>משתמש בעובדות כדי לפעול</h5>
+                        <ul>
+                            <li>מחפש מידע מדוייק, עובדות ונתונים</li>
+                            <li>נוטה להתמקד בפרטים הקטנים</li>
+                            <li>בעל גישה ריאלית וקרובה למציאות</li>
+                            <li>מוודא שהדברים עובדים בפועל ולא רק בתאוריה</li>
+                            <li>נוטה לחפש מידע, תצפיות ומקורות מגוונים</li>
+                        </ul>
+                    </div>
+                    <div class="col N mbti-col">
+                        <h5>משתמש בכוח הדמיון</h5>
+                        <ul>
+                            <li>נמשך לרעיונות חדשניים, טכנולוגיות ודרכים יצירתיות</li>
+                            <li>בעל דימיון מפותח</li>
+                            <li>מתמקד בתאוריה וברעיון, ופחות בביצוע ובמימוש בפועל</li>
+                            <li>אוהב לראות את התמונה המלאה, לחשוב מחוץ לקופסא ולמצוא קשרים בין חלקים במסגרת</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="btn-group" data-toggle="buttons" aria-label="where you get your energy from">
+                            <label for="sn_range">התכונות מימין</label>
+                            <input type="range" id="sn_range"  class="form_range" min="-2" max="2"
+                                   step="1">
+                            <label for="sn_range">התכונות משמאל</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row border rounded mt-2 p-3">
+            <div class="form-group">
+                <h4>מה עוזר לו לקבל החלטות?</h4>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col T mbti-col">
+                        <h5>מקבל את ההחלטות על סמך היגיון</h5>
+                        <ul>
+                            <li>מחפש נימוקים וקשרים לוגים</li>
+                            <li>מנתח סיבה ותוצאה ומעריך בהתאם</li>
+                            <li>מחפש אמיתות אובייקטיביות</li>
+                            <li>מחליט לפי אמות מידה כלליות ולא אישיות</li>
+                            <li>ביקורתי</li>
+                        </ul>
+                    </div>
+                    <div class="col F mbti-col">
+                        <h5>משתמש בערכים או באינטואציה</h5>
+                        <ul>
+                            <li>מבוסס על ערכים אישיים ולא כללים</li>
+                            <li>נוטה להבין את נקודת הראות של הזולת</li>
+                            <li>מחפש פתרונות שמביאים הרמוניה</li>
+                            <li>מקבל החלטות מותאמות לנסיבות אישיות</li>
+                            <li>נוטה לשבח ולא לבקר</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="btn-group" data-toggle="buttons" aria-label="where you get your energy from">
+                            <label for="tf_range">התכונות מימין</label>
+                            <input type="range" id="tf_range"  class="form_range" min="-2" max="2"
+                                   step="1">
+                            <label for="tf_range">התכונות משמאל</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row border rounded mt-2 p-3">
+            <div class="form-group">
+                <h4>איך הוא מתמודד עם מטלות או בעיות?</h4>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+
+                    <div class="col J mbti-col">
+                        <h5>מתכנן בקפידה, מעדיף לעבוד לפי התוכנית. ביקורתי בתהליך</h5>
+                        <ul>
+                            <li>שואף לפתרון סגור מובנה או מדוייק</li>
+                            <li>נוטה לתכנן תוכניות מפורטות ודרך פעולה סדורה</li>
+                            <li>פועל בצורה מידתית ומבוקרת</li>
+                            <li>אוהב מסגרת ברורה ומשימות מובנות מפורטות ומדוייקות</li>
+                            <li>מעדיף לקבוע זמנים לכל משימה ומנסה לעמוד בהם</li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col P mbti-col">
+                        <h5>שואף לפתרונות גמישים. מסתגל ופתוח לשינויים</h5>
+                        <ul>
+                            <li>שואף לעבוד עם מגוון אפשרויות לפעולה</li>
+                            <li>גמיש ומוכן לקבל שינויים לא צפויים</li>
+                            <li>מגיב למידע חיצוני שמתעורר</li>
+                            <li>נוטה להיות ספונטני</li>
+                            <li>נוטה לא ללכת עם הזרם</li>
+                            <li>בעל עצמאות מחשבתית</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="btn-group" data-toggle="buttons" aria-label="where you get your energy from">
+                            <label for="jp_range">התכונות מימין</label>
+                            <input type="range" id="jp_range"  class="form_range" min="-2" max="2"
+                                   step="1">
+                            <label for="jp_range">התכונות משמאל</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row border rounded mt-2 p-3">
+            <div class="form-group">
+                <h4>תכונה בולטת </h4>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <textarea id="good_characteristic" class="form-control rounded-0" rows="2"></textarea>
+                        <div id="characteristic-section" class="col ">
+                            <button id="suggest-characteristics" class="btn btn-success mb-3">הצע תכונות</button>
+                            <div id ="characteristics" style="direction: ltr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row border rounded mt-2 p-3">
+            <div class="form-group">
+                <h4> התנדבות, הישג או הצלחה מיוחדים</h4>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <textarea id="great_achievement" class="form-control rounded-0" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row border rounded mt-2 p-3">
+            <div class="form-group">
+                <h4> בעית התנהגות או פרטים הדורשים שיפור</h4>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-6">
+                        <textarea id="behavior_problem" class="form-control rounded-0" rows="3"></textarea>
+                    </div>
+                    <div id="behavaior-ideas-section" class="col ">
+                        <button id="suggest-behaviour" class="btn btn-success mb-3">הצע רעיונות</button>
+                        <div id ="behaviour_ideas" style="direction: ltr"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row border rounded mt-2 p-3">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="col-6 p-3">
+                        <span class="input-group-text">מקצוע לימוד הדורש שיפור</span>
+                        <input id="low_subject" type="text" class="form-control" aria-label="With textarea">
+                    </div>
+                    <div id="subject-ideas-section" class="col">
+                        <button id="suggest-subject" class="btn btn-success mb-3">הצע רעיונות</button>
+                        <div id ="subject_ideas"  style="direction: ltr"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div  class="row   mt-2 p-3">
+            <div id="submit-section" class="col text-center">
+                <button type="submit" class="btn btn-success mb-3">צור חוות דעת</button>
+            </div>
+             <div id="loading-spinner" class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">חוות הדעת בהכנה....</span>
+            </div>
+
+        </div>
+
+
+
+
+
+    </form>
+
+
+</div>
+
+
+
+<div id="response-section">
+    <hr>
+    <div class="container mt-5">
+        <div class="form-group">
+            <div class="row border rounded mt-2 p-3">
+                <h5>אופציה א</h5>
+                <div class="col">
+                    <textarea id="response-text-1" class="form-control rounded-0" rows="10"></textarea>
+                    <div class="col ltr" id="original-text-1"></div>
+                </div>
+            </div>
+            <div class="row border rounded mt-2 p-3">
+                <h5>אופציה ב</h5>
+                <div class="col">
+                    <textarea id="response-text-2" class="form-control rounded-0" rows="10"></textarea>
+                    <div class="col ltr" id="original-text-2"></div>
+                </div>
+
+            </div>
+            <div class="row border rounded mt-2 p-3">
+                <h5>אופציה ג</h5>
+                <div class="col">
+                    <textarea id="response-text-3" class="form-control rounded-0" rows="10"></textarea>
+                    <div class="col ltr" id="original-text-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<html lang="he" dir="rtl">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>משוב כיתתי</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css"
+          integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
+    <style>
+.hiddenRow {
+    padding: 0 !important;
+    display:none
+}
+
+
+    </style>
+    <script
+            src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
+    <script>
+          var class_details = null;
+          $(document).ready(function() {
+
+
+            $('#uploadForm').submit(function(e) {
+              e.preventDefault(); // prevent default form submit action
+
+              var formData = new FormData($(this)[0]); // create form data object
+              $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    class_details = data
+                    var rows = '';
+                    $.each(data, function(index, item) {
+                        rows += '<tr>';
+                        rows += '<td>' + item.id + '</td>';
+                        rows += '<td>' + item.name + '</td>';
+                        rows += '<td>' + ('good_feedback' in item ? item.good_feedback :'') + '</td>';
+                        rows += '<td>' + ('to_improve' in item ? item.to_improve :'')  + '</td>';
+                        rows += '<td><button class="review-toggler btn btn-sm btn-success" data-id="'+item.id+'" data-target="#accordion-' + item.id + '"><span>חוות דעת</span></button></td>';
+                        rows += '</tr>';
+
+                        rows += '<tr id="accordion-' + item.id + '" class="hiddenRow">';
+                        rows += '<td colspan="6">';
+                        rows += '<textarea id="review-'+ item.id+'" class="form-control rounded-0" rows="7"></textarea>';
+                        rows += '</td>';
+                        rows += '</tr>';
+                      });
+                      $('#class-students tbody').html(rows);
+                      $('.review-toggler').on('click', function(event){
+                         var id = $(this).data('id')
+                         if ($(this).hasClass('generated')){
+                            $('#accordion-'+id).toggle()
+                            return false
+                         }
+                         $(this).attr('disabled', 'disabled')
+                         $(this).val('...')
+                         var $that = $(this)
+
+                        $.ajax({
+                          type: "POST",
+                          contentType: 'application/json',
+                          url: "/generate_grades_review/",
+                          data: JSON.stringify(class_details[id]),
+                        }).done(function (data) {
+                            var review = data.review
+                            $('#accordion-'+id).toggle()
+                            $('#review-'+id).val(review.text)
+                            $that.removeAttr('disabled').addClass('generated')
+                        })
+                      })
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                  console.error(textStatus, errorThrown);
+                  alert('An error occurred while uploading the file.');
+                }
+              });
+            });
+          });
+
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>העלה קובץ משו"ב</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <div class="row border rounded mt-2 p-3">
+            <div class="input-group-text" id="basic-addon3">העלה קובץ משו"ב הכולל שורת ציונים ושורת הערכת מורה עבור כל
+                תלמיד
+            </div>
+            <div class="input-group mb-3">
+
+                <input type="file" class="form-control-file" id="file" name="file">
+            </div>
+            <div class="input-group mb-3 text-center">
+                <button type="submit" class="btn btn-primary btn-small">נתח</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="container">
+    <table class="table table-striped table-condensed" id="class-students">
+        <thead>
+        <tr>
+            <th>ת.ז</th>
+            <th>שם</th>
+            <th>חיובי</th>
+            <th>שלילי</th>
+            <th>הצג</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
