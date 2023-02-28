@@ -4,9 +4,13 @@ The app can run as uvicorn / gunicorn web service
 ## installation
 
 $ pip install virtualenv
+
 $ virtualenv venv
+
 $ source venv/bin/activate
+
 $ pip install -r requirements.txt
+
 
 
 
