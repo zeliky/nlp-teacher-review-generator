@@ -1,7 +1,7 @@
 import pandas as pd
 import subprocess
 import openai
-openai.api_key = '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'
+openai.api_key = '<YOUR API KEY>'
 class ModelFineTuner:
     def __init__(self):
         self.model_name  = None
