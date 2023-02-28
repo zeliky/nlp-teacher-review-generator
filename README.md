@@ -1,4 +1,4 @@
-# nlp-teacher-review-generator
+# NLP Teacher Review Generator
 
 The app can run as uvicorn / gunicorn web service
 ## installation
