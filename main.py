@@ -19,11 +19,14 @@ app.mount("/js", StaticFiles(directory="frontend"), name="frontend")
 
 
 @app.get("/")
+async def index():  
+    return FileResponse('frontend/class_file.html')
+
+@app.get("/extended_review")
 async def index():
-    return FileResponse('frontend/index.html')
-    #return FileResponse('frontend/class_file.html')
-
-
+    return FileResponse('frontend/index.html')    
+    
+    
 @app.post("/generate_grades_review/")
 async def generate_grades_review(features: dict):
     review =  await prepare_grades_review(features)
